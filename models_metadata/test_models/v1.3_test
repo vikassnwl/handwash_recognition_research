@@ -1,0 +1,20 @@
+Same as v1.1_test but the following data augmentation was applied.
+
+datagen = tf.keras.preprocessing.image.ImageDataGenerator(
+    zoom_range=0.2,
+    brightness_range=(0.5, 1.5),
+    rescale=1.0/255
+)
+
+train_generator = datagen.flow_from_directory(
+    "/kaggle/input/camera-train-test/train",
+    class_mode="sparse"
+)
+
+Epoch 10/10
+147/147 ━━━━━━━━━━━━━━━━━━━━ 99s 642ms/step - accuracy: 0.9912 - loss: 0.0340
+
+Found 1730 files belonging to 2 classes.
+55/55 ━━━━━━━━━━━━━━━━━━━━ 3s 48ms/step - accuracy: 0.9986 - loss: 0.0067
+Test Loss: 0.009330264292657375
+Test Accuracy: 0.9976878762245178
