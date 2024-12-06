@@ -2,7 +2,9 @@ import matplotlib.pyplot as plt
 import cv2
 
 
-def grid_plot(X, y, rows, cols, figsize=None):
+def grid_plot(X, y=None, rows=None, figsize=None):
+    rows = rows or int(np.ceil(np.sqrt(len(X))))
+    cols = int(np.ceil(len(X)/rows))
     figsize = figsize or (cols*2, rows*2)
     fig, axes = plt.subplots(rows, cols, figsize=figsize)
     for i in range(len(X))[:rows*cols]:
@@ -10,7 +12,7 @@ def grid_plot(X, y, rows, cols, figsize=None):
             ax = axes[i]
         else:
             ax = axes[i//cols][i%cols]
-        ax.set_title(y[i])
+        if y: ax.set_title(y[i])
         ax.imshow(X[i])
     plt.tight_layout()
 
