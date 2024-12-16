@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import cv2
+import os
+import wget
 
 
 def grid_plot(X, y=None, rows=None, figsize=None):
@@ -96,3 +98,9 @@ def predict_n_plot(img_dir_pth, num_preds_to_make=None, num_rows_to_display=None
     plt.tight_layout()
 
 
+def download_from_drive(drive_file_url, save_as):
+    file_id = drive_file_url.split("/")[-2]
+    if not os.path.exists(save_as):
+        download_url = f"https://drive.google.com/uc?id={file_id}"
+        wget.download(download_url, out=save_as)
+    print("Done")
